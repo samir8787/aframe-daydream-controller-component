@@ -211,6 +211,9 @@ AFRAME.registerComponent('daydream-controller', {
     if (!changed) { return; }
     this.previousAxis = controllerAxes.slice();
     this.el.emit('axismove', {axis: this.previousAxis});
+    this.el.components.raycaster.intersectedEls.forEach((el) => {
+      el.emit('axismove',{axis: this.previousAxis});
+    })
   },
 
   handleTrackpadButton: function () {
